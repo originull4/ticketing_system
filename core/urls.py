@@ -9,5 +9,5 @@ urlpatterns = [
     path('home/', home_view, name='home'),
     path('', RedirectView.as_view(pattern_name='home')),
 
-    # path('', include('auth.urls'))
+    path('account/', include('account.urls'))
 ]

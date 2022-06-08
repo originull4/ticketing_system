@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock title %}
+
+{% block content %}
+<div class="card border-dark" style="width: 25rem; margin: auto;">
+    <h5 class="card-header bg-dark text-light">ورود کاربر</h5>
+    <div class="card-body">
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="username" class="form-label">نام کاربری</label>
+                <input type="text" value="{% if 'username' in form %}{{ form.username }}{% endif %}"
+                    class="form-control" id="username" name="username" placeholder="نام کاربری">
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">رمز عبور</label>
+                <input type="password" value="{% if 'password' in form %}{{ form.password }}{% endif %}"
+                    class="form-control" id="password" name="password" placeholder="رمز عبور" required>
+            </div>
+
+            <button class="btn btn-dark w-100 mb-3" type="submit">ورود</button>
+        </form>
+        <p>اگر حساب کاربری ندارید <a href="{% url 'signup' %}"> ثبت نام کنید</a>.</p>
+    </div>
+</div>
+{% endblock content %}

@@ -31,30 +31,45 @@
 
   <div class="container-fluid">
     <div class="row">
+
+      <!-- Sidebar -->
       <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
         <div class="position-sticky">
           <ul class="nav flex-column">
             <li class="nav-item">
-              <a class="nav-link" href="#">صفحه اصلی</a>
+              <a class="nav-link" href="{% url 'home' %}">صفحه اصلی</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">ثبت نام</a>
+              <a class="nav-link" href="{% url 'signup' %}">ثبت نام</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">ورود</a>
+              <a class="nav-link" href="{% url 'login' %}">ورود</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">خروج</a>
+              <a class="nav-link" href="{% url 'logout' %}">خروج</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">پنل مدیریت</a>
+              <a class="nav-link" href="{% url 'profile' %}">حساب کاربری</a>
             </li>
           </ul>
         </div>
       </nav>
 
-      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 mt-2">
-        {% block content %}{% endblock content %}
+      <!-- Main Content Section -->
+      <main class="col-md-9 ms-sm-auto col-lg-10 p-0">
+
+        <!-- Message Section -->
+        {% for message in messages %}
+        <div class="alert {{ message.tags }} alert-dismissible fade show rounded-0 m-0" role="alert">
+          <strong>{{ message }}</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+
+        <!-- Content Block -->
+        <div class="p-3">
+          {% block content %}{% endblock content %}
+        </div>
       </main>
     </div>
   </div>

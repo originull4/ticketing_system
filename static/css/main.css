@@ -1,10 +1,11 @@
 @font-face {
-  font-family: vazir;
+  font-family: 'Noto Naskh Arabic';
   src: url("../fonts/NotoNaskh.ttf");
 }
 
 body {
   font-size: .875rem;
+  font-family: 'Noto Naskh Arabic', serif;
 }
 
 .feather {

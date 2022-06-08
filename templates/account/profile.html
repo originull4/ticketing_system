@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Profile{% endblock title %}
+
+{% block content %}
+{% load jalali %}
+<ul class="list-group">
+    <li class="list-group-item d-flex justify-content-between">
+        <strong>نام کاربری</strong>
+        <span>{{ user.username }}</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between">
+        <strong>نام</strong>
+        <span>{{ user.first_name }}</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between">
+        <strong>نام خانوادگی</strong>
+        <span>{{ user.last_name }}</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between">
+        <strong>ایمیل</strong>
+        <span>{{ user.emial }}</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between">
+        <strong>تاریخ آخرین ورود</strong>
+        <span>{% jalali user.last_login %}</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between">
+        <strong>تاریخ ثبت نام</strong>
+        <span>{% jalali user.date_joined %}</span>
+    </li>
+</ul>
+{% endblock content %}
