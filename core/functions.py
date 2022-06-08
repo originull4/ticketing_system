@@ -5,3 +5,7 @@ def is_english(value):
         return False
     else:
         return True
+
+def checkbox_to_bool(value):
+    if value == 'on': return True
+    else: return False

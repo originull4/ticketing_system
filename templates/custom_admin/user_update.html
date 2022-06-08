@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block title %}User Update{% endblock title %}
+
+{% block content %} {% load jalali %}
+<form method="post" class="border border-secondary rounded p-3">
+
+    {% csrf_token %}
+    <!-- date_joined -->
+    <div class="row mb-3 fw-bold">
+        <label for="date_joined" class="col-sm-3 col-lg-2 col-form-label">تاریخ ثبت نام: </label>
+        <div class="col-sm-9 col-lg-10">
+            <input type="text" value="{% jalali user_object.date_joined %}" class="form-control form-control-sm"
+                id="date_joined" name="date_joined" readonly>
+        </div>
+    </div>
+
+    <!-- last_login -->
+    <div class="row mb-3 fw-bold">
+        <label for="last_login" class="col-sm-3 col-lg-2 col-form-label">تاریخ آخرین ورود: </label>
+        <div class="col-sm-9 col-lg-10">
+            <input type="text" value="{% jalali user_object.last_login %}" class="form-control form-control-sm"
+                id="last_login" name="last_login" readonly>
+        </div>
+    </div>
+
+    <!-- username -->
+    <div class="row mb-3 fw-bold">
+        <label for="username" class="col-sm-3 col-lg-2 col-form-label">نام کاربری: </label>
+        <div class="col-sm-9 col-lg-10">
+            <input type="text" value="{{ user_object.username }}" class="form-control form-control-sm" id="username"
+                name="username" placeholder="نام کاربری" required>
+        </div>
+    </div>
+
+    <!-- first_name -->
+    <div class="row mb-3 fw-bold">
+        <label for="first_name" class="col-sm-3 col-lg-2 col-form-label">نام: </label>
+        <div class="col-sm-9 col-lg-10">
+            <input type="text" value="{{ user_object.first_name }}" class="form-control form-control-sm" id="first_name"
+                name="first_name" placeholder="نام">
+        </div>
+    </div>
+
+    <!-- last_name -->
+    <div class="row mb-3 fw-bold">
+        <label for="last_name" class="col-sm-3 col-lg-2 col-form-label">نام خانوادگی: </label>
+        <div class="col-sm-9 col-lg-10">
+            <input type="text" value="{{ user_object.last_name }}" class="form-control form-control-sm" id="last_name"
+                name="last_name" placeholder="نام خانوادگی">
+        </div>
+    </div>
+
+    <!-- email -->
+    <div class="row mb-3 fw-bold">
+        <label for="email" class="col-sm-3 col-lg-2 col-form-label">آدرس ایمیل: </label>
+        <div class="col-sm-9 col-lg-10">
+            <input type="email" value="{{ user_object.email }}" class="form-control form-control-sm" id="email"
+                name="email" placeholder="آدرس ایمیل">
+        </div>
+    </div>
+
+    <!-- is_active -->
+    <div class="row mb-3 fw-bold">
+        <label for="is_active" class="col-sm-3 col-lg-2 col-form-label">فعال: </label>
+        <div class="col-sm-9 col-lg-10">
+            <input type="checkbox" {% if user_object.is_active %}checked{% endif %} class="form-check-input m-0"
+                id="is_active" name="is_active">
+        </div>
+    </div>
+
+    <!-- is_staff -->
+    <div class="row mb-3 fw-bold">
+        <label for="is_staff" class="col-sm-3 col-lg-2 col-form-label">وضعیت کارمندی: </label>
+        <div class="col-sm-9 col-lg-10">
+            <input type="checkbox" {% if user_object.is_staff %}checked{% endif %} class="form-check-input m-0"
+                id="is_staff" name="is_staff">
+        </div>
+    </div>
+
+    <!-- is_superuser -->
+    <div class="row mb-3 fw-bold">
+        <label for="is_superuser" class="col-sm-3 col-lg-2 col-form-label">مدیر: </label>
+        <div class="col-sm-9 col-lg-10">
+            <input type="checkbox" {% if user_object.is_superuser %}checked{% endif %} class="form-check-input m-0"
+                id="is_superuser" name="is_superuser">
+        </div>
+    </div>
+
+    <button class="btn btn-outline-dark w-25" type="submit">ذخیره</button>
+
+</form>
+{% endblock content %}

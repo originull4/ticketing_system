@@ -76,3 +76,7 @@ body {
   top: .25rem;
   left: 1rem;
 }
+
+a {
+  text-decoration: none;
+}
