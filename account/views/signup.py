@@ -1,9 +1,5 @@
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from django.contrib.auth import login
-from django.contrib.auth.models import User
-from core.decorators import unauthenticated_user
-from core.functions import is_english
+from account.imports import *
+
 
 @unauthenticated_user
 def signup_view(request):

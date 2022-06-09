@@ -2,6 +2,12 @@
 {% block title %}Users List{% endblock title %}
 
 {% block content %}
+
+<form action="{% url 'user-list' %}" method="get" class="mb-4 pb-2 border-bottom border-dark">
+    <input type="text" class="form-control form-control-sm" name="user_search" placeholder="جستجو با نام کاربری"
+        autofocus>
+</form>
+
 <div class="table-responsive">
     <table class="table table-sm table-hover">
         <thead>

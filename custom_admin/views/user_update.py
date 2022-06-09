@@ -1,8 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.models import User
-from django.contrib import messages
-from core.functions import is_english, checkbox_to_bool
-
+from custom_admin.imports import *
 
 def user_update_view(request, id):
     errors = []
@@ -19,15 +15,18 @@ def user_update_view(request, id):
 
         if User.objects.exclude(pk=id).filter(username=form['username']).exists():
             errors.append('این نام کربری قبلا ثبت شده است. با یک نام کاربری دیگر امتحان کنید.')
-        elif is_english(form['username']) == False:
+        if is_english(form['username']) == False:
             errors.append('نام کاربری باید انگلیسی باشد.')
-        elif len(form['username']) < 5:
+        if len(form['username']) < 5:
             errors.append('نام کاربری حداقل باید شامل ۵ حرف باشد.')
-        else:
-            User.objects.filter(pk=id).update(**form)
-            messages.success(request, 'تغییرات ذخیره شد.')
-            return redirect('user-list')
+            
+        if len(errors) == 0:
+            try:
+                User.objects.filter(pk=id).update(**form)
+                messages.success(request, 'تغییرات ذخیره شد.')
+                return redirect('user-list')
+            except Exception as ex:
+                errors.append(ex)
+    print(errors)
 
-
-
-    return render(request, 'custom_admin/user_update.html', {'user_object': user})
+    return render(request, 'custom_admin/user_update.html', {'user_object': user, 'errors': errors})

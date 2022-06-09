@@ -1,8 +1,4 @@
-from django.urls import path
-from account.views.signup import signup_view
-from account.views.login import login_view
-from account.views.logout import logout_view
-from account.views.profile import profile_view
+from account.imports import *
 
 
 urlpatterns = [

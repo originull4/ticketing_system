@@ -1,7 +1,4 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
-from django.contrib import messages
-from core.decorators import unauthenticated_user
+from account.imports import *
 
 @unauthenticated_user
 def login_view(request):

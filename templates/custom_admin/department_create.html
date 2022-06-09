@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}Department Create{% endblock title %}
+
+{% block content %}
+<div class="border border-secondary rounded p-3">
+    <!-- Errors -->
+    {% if errors|length != 0 %}
+    <ul class="list-group border border-danger mb-3">
+        {% for error in errors %}
+        <li class="list-group-item text-danger">{{ error }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <form method="post">
+
+        {% csrf_token %}
+
+        <!-- username -->
+        <div class="row mb-3 fw-bold">
+            <label for="name" class="col-sm-3 col-lg-2 col-form-label">نام دپارتمان: </label>
+            <div class="col-sm-9 col-lg-10">
+                <input type="text" value="{{ department.name }}" class="form-control form-control-sm" id="name"
+                    name="name" placeholder="نام دپارتمان" required>
+            </div>
+        </div>
+
+        <!-- desctiption -->
+        <div class="row mb-3 fw-bold">
+            <label for="desctiption" class="col-sm-3 col-lg-2 col-form-label">توضیحات: </label>
+            <div class="col-sm-9 col-lg-10">
+                <textarea class="form-control form-control-sm" name="description" id="description" rows="5"></textarea>
+            </div>
+        </div>
+
+        <!-- admin -->
+        <div class="row mb-3 fw-bold">
+            <label for="admin" class="col-sm-3 col-lg-2 col-form-label">مدیر دپارتمان: </label>
+            <div class="col-sm-9 col-lg-10">
+                <input type="text" value="{{ department.admin }}" class="form-control form-control-sm" id="admin"
+                    name="admin" placeholder="مدیر دپارتمان">
+                <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                    {% for staff_user in staff_users %}
+                    <option value="1">One</option>
+                      
+                    {% endfor %}
+                    <option selected>Open this select menu</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+        </div>
+
+        <button class="btn btn-outline-dark w-25" type="submit">ذخیره</button>
+
+    </form>
+</div>
+{% endblock content %}

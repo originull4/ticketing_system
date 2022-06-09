@@ -1,6 +1,4 @@
-from django.shortcuts import redirect
-from django.contrib.auth import logout
-
+from account.imports import *
 
 def logout_view(request):
     logout(request)

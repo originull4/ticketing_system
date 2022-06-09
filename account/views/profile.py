@@ -1,5 +1,4 @@
-from django.shortcuts import render
-from core.decorators import login_required
+from account.imports import *
 
 @login_required
 def profile_view(request):
