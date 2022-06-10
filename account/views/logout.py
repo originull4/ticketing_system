@@ -1,4 +1,4 @@
-from account.imports import *
+from account.imports import logout, redirect
 
 def logout_view(request):
     logout(request)

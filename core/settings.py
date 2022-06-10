@@ -98,9 +98,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
 LANGUAGE_CODE = 'fa'
-
+LANGUAGES = (('fa', 'Farsi'),)
 TIME_ZONE = 'Asia/Tehran'
-
+LOCALE_PATHS = [BASE_DIR / 'locale']
 USE_I18N = True
 
 USE_TZ = True

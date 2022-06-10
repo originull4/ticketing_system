@@ -13,3 +13,7 @@ from custom_admin.views.department_create import department_create_view
 from custom_admin.views.department_list import department_list_view
 from custom_admin.views.department_update import department_update_view
 from custom_admin.views.department_delete import department_delete_view
+from custom_admin.views.department_expert_list import department_expert_list_view
+from custom_admin.views.department_expert_new import department_expert_new_view
+from custom_admin.views.department_expert_delete import department_expert_delete_view
+from custom_admin.views.department_expert_add import department_expert_add_view

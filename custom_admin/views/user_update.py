@@ -1,4 +1,6 @@
 from custom_admin.imports import *
+from django.utils.translation import gettext as _
+
 
 def user_update_view(request, id):
     errors = []
@@ -14,16 +16,16 @@ def user_update_view(request, id):
         form['is_superuser'] = True if request.POST.get('is_superuser') == 'on' else False
 
         if User.objects.exclude(pk=id).filter(username=form['username']).exists():
-            errors.append('این نام کربری قبلا ثبت شده است. با یک نام کاربری دیگر امتحان کنید.')
+            errors.append(_('this username is taken, try with other username.'))
         if is_english(form['username']) == False:
-            errors.append('نام کاربری باید انگلیسی باشد.')
+            errors.append(_('username must be in english.'))
         if len(form['username']) < 5:
-            errors.append('نام کاربری حداقل باید شامل ۵ حرف باشد.')
+            errors.append(_('username must be 5 characters at least.'))
             
         if len(errors) == 0:
             try:
                 User.objects.filter(pk=id).update(**form)
-                messages.success(request, 'تغییرات ذخیره شد.')
+                messages.success(request, _('user updated successfully.'))
                 return redirect('user-list')
             except Exception as ex:
                 errors.append(ex)

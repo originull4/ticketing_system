@@ -1,4 +1,4 @@
-from account.imports import *
+from account.imports import render, login_required
 
 @login_required
 def profile_view(request):

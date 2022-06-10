@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load i18n %}
+{% translate output %} <br>
+{% trans output %} <br>
+{{ output }} <br>
+{% get_current_language as LANGUAGE_CODE %}
+{{ LANGUAGE_CODE }}
+{% endblock content %}

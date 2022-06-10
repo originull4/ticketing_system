@@ -2,5 +2,62 @@
 {% block title %}Department Update{% endblock title %}
 
 {% block content %}
-update
+<div class="border border-secondary rounded p-3">
+    <!-- Errors -->
+    {% if errors|length != 0 %}
+    <ul class="list-group border border-danger mb-3">
+        {% for error in errors %}
+        <li class="list-group-item text-danger">{{ error }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <form method="post">
+
+        {% csrf_token %}
+
+        <!-- username -->
+        <div class="row mb-3 fw-bold">
+            <label for="name" class="col-sm-3 col-lg-2 col-form-label">نام دپارتمان: </label>
+            <div class="col-sm-9 col-lg-10">
+                <input type="text" value="{{ department.name }}"
+                    class="form-control form-control-sm" id="name" name="name" placeholder="نام دپارتمان" required>
+            </div>
+        </div>
+
+        <!-- description -->
+        <div class="row mb-3 fw-bold">
+            <label for="description" class="col-sm-3 col-lg-2 col-form-label">توضیحات: </label>
+            <div class="col-sm-9 col-lg-10">
+                <textarea class="form-control form-control-sm" name="description" id="description" rows="5">{{ department.description }}</textarea>
+            </div>
+        </div>
+
+        <!-- admin -->
+        <div class="row mb-3 fw-bold">
+            <label for="admin" class="col-sm-3 col-lg-2 col-form-label">مدیر دپارتمان: </label>
+            <div class="col-sm-9 col-lg-10">
+                <select class="form-select form-select-sm" name="admin" id="admin">
+                    {% for expert in experts %}
+                    {% if expert == department.admin %}
+                    <option value="{{ expert.id }}" selected>{{ expert.username }}</option>
+                    {% else %}
+                    <option value="{{ expert.id }}">{{ expert.username }}</option>
+                    {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <!-- Button Row -->
+        <div class="row mb-3 fw-bold">
+            <div for="admin" class="col-sm-3 col-lg-2"></div>
+            <div class="col-sm-9 col-lg-10">
+                <button class="btn btn-outline-dark w-25" type="submit">ذخیره</button>
+            </div>
+        </div>
+
+
+    </form>
+</div>
 {% endblock content %}

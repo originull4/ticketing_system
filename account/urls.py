@@ -1,4 +1,4 @@
-from account.imports import *
+from account.imports import signup_view, login_view, logout_view, profile_view, path
 
 
 urlpatterns = [

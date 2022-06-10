@@ -1,4 +1,5 @@
-from account.imports import *
+from account.imports import unauthenticated_user, authenticate, login, messages, redirect, render
+from django.utils.translation import gettext as _
 
 @unauthenticated_user
 def login_view(request):
@@ -10,10 +11,10 @@ def login_view(request):
 
         if user:
             login(request, user)
-            messages.success(request, 'شما با موفقیت وارد شدید')
+            messages.success(request, _('you are logged in successfully.'))
             return redirect('profile')
 
         else:
-            messages.error(request, 'نام کاربری یا رمز عبور اشتباه است')
+            messages.error(request, _('username or password is wrong.'))
 
     return render(request, 'account/login.html', {'form': form})

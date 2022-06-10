@@ -1,5 +1,5 @@
-from account.imports import *
-
+from account.imports import unauthenticated_user, is_english, User, login, messages, render, redirect
+from django.utils.translation import gettext as _
 
 @unauthenticated_user
 def signup_view(request):
@@ -8,21 +8,20 @@ def signup_view(request):
     if request.method == 'POST':
         form = request.POST
         if User.objects.filter(username=form['username']).exists():
-            errors.append('این نام کربری قبلا ثبت شده است. با یک نام کاربری دیگر امتحان کنید.')
+            errors.append(_('this username is taken, try with other username.'))
         if is_english(form['username']) == False:
-            errors.append('نام کاربری باید انگلیسی باشد.')
+            errors.append(_('username must be in english.'))
         if len(form['username']) < 5:
-            errors.append('نام کاربری حداقل باید شامل ۵ حرف باشد.')
+            errors.append(_('username must be 5 characters at least.'))
         if form['password1'] != form['password2']:
-            print('password')
-            errors.append('رمز عبور و تایید رمز عبور باید یکسان باشند.')
+            errors.append(_('password and password confirm must be equal.'))
         if(len(form['password1']) < 8):
-            errors.append('رمز عبور حداقل باید شامل ۸ کارکاتر باشد.')
+            errors.append(_('password must be 8 characters at least.'))
         if len(errors) == 0:
             try:
                 user = User.objects.create_user(username=form['username'], password=form['password1'])
                 login(request, user)
-                messages.success(request, 'ثبت نام شما انجام و وارد شدید.')
+                messages.success(request, _('your registration is done and you are loged in.'))
                 return redirect('profile')
             except Exception as ex:
                 errors.append(ex)
