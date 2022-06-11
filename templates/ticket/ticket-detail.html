@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Ticket Detail{% endblock title %}
+
+{% block content %}
+{% load jalali %}
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title pb-1 mb-3" style="border-bottom: 1px solid silver;">{{ ticket.title }}</h5>
+        <p class="card-text">
+        <p><strong>ایجاد شده توسط: </strong>{{ ticket.owner.username }}</p>
+        <p><strong>متن پرسش: </strong>{{ ticket.body }}</p>
+        <p><strong>تاریخ ایجاد: </strong>{% jalali ticket.created_at %}</p>
+        <p><strong>وضیت پرسش: </strong>{% if ticket.closed %}بسته شده{% else %}منتظر پاسخ{% endif %}</p>
+        {% if ticket.closed_at %}
+        <p><strong>تاریخ بسته شدن</strong>{% jalali ticket.closed_at %}</p>
+        {% endif %}
+        </p>
+
+        <h6 class="p-2 rounded mb-3 mx-0 bg-dark text-light ">پاسخ ها به این پرسش</h6>
+
+        {% if replies|length == 0 %}
+        <p>هنوز پاسخی به یا پرسش داده نشده است.</p>
+        {% else %}
+        {% for reply in replies %}
+        <p class="card-title pb-1 mb-2" style="border-bottom: 1px solid silver;">
+            <strong>توسط: </strong>{{ reply.user.username }} |
+            <strong>تاریخ: </strong>{% jalali reply.created_at %} <br>
+            <strong>پاسخ: </strong> {{ reply.body }}
+        </p>
+        {% endfor %}
+        {% endif %}
+
+        <div class="card">
+            <div class="card-body">
+                <form method="post" action="{% url 'ticket-reply-create' ticket.id %}">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="body" class="form-label">پاسخ به این پرسش</label>
+                        <textarea class="form-control" id="body" rows="3" name="body"></textarea>
+                    </div>
+                    <button class="btn btn-secondary btn-sm" type="submit">ثبت پاسخ</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock content %}

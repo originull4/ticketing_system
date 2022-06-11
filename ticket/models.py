@@ -1,3 +1,4 @@
+from operator import truediv
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -16,20 +17,20 @@ class Department(models.Model):
 
 
 class Ticket(models.Model):
-    owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True,)
+    owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='tickets')
     department = models.ForeignKey(Department, on_delete=models.SET_NULL, null=True, blank=True,)
     title = models.CharField(max_length=100)
     body = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     closed = models.BooleanField(default=False)
-    closed_at = models.DateTimeField()
+    closed_at = models.DateTimeField(null=True, blank=True)
 
     def __str__(self) -> str:
         return self.title
 
 
 class TicketReply(models.Model):
-    ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE)
+    ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE, related_name='replies')
     user = models.ForeignKey(User, on_delete=models.SET_NULL, related_name='replied_by', null=True, blank=True,)
     created_at = models.DateTimeField(auto_now_add=True)
     body = models.TextField()

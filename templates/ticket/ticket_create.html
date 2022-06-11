@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Ticket Create{% endblock title %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title pb-1 mb-3" style="border-bottom: 1px solid silver;">ایجاد پرسش جدید</h5>
+        <!-- Errors -->
+        {% if errors|length != 0 %}
+        <ul class="list-group border border-danger mb-3">
+            {% for error in errors %}
+            <li class="list-group-item text-danger">{{ error }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        <form method="post">
+
+            {% csrf_token %}
+
+            <!-- title -->
+            <div class="row mb-3 fw-bold">
+                <label for="title" class="col-sm-3 col-lg-2 col-form-label">عنوان: </label>
+                <div class="col-sm-9 col-lg-10">
+                    <input type="text" value="{% if 'title' in form %}{{ form.title }}{% endif %}"
+                        class="form-control form-control-sm" id="title" name="title" placeholder="عنوان پرسش" required>
+                </div>
+            </div>
+
+            <!-- body -->
+            <div class="row mb-3 fw-bold">
+                <label for="body" class="col-sm-3 col-lg-2 col-form-label">توضیحات: </label>
+                <div class="col-sm-9 col-lg-10">
+                    <textarea class="form-control form-control-sm" name="body" id="body" rows="5">{% if 'body' in form %}{{ form.body }}{% endif %}</textarea>
+                </div>
+            </div>
+
+            <!-- department -->
+            <div class="row mb-3 fw-bold">
+                <label for="department" class="col-sm-3 col-lg-2 col-form-label">انتخاب دپارتمان: </label>
+                <div class="col-sm-9 col-lg-10">
+                    <select class="form-select form-select-sm" name="department" id="department">
+                        {% for department in departments %}
+                        <option value="{{ department.id }}">{{ department.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <!-- Button Row -->
+            <div class="row mb-3 fw-bold">
+                <div for="admin" class="col-sm-3 col-lg-2"></div>
+                <div class="col-sm-9 col-lg-10">
+                    <button class="btn btn-outline-dark w-25" type="submit">ساخت پرسش</button>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+{% endblock content %}

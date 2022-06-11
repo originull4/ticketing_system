@@ -12,4 +12,5 @@ urlpatterns = [
 
     path('account/', include('account.urls')),
     path('adminc/', include('custom_admin.urls')),
+    path('ticket/', include('ticket.urls'))
 ]

@@ -29,4 +29,14 @@
         <span>{% jalali user.date_joined %}</span>
     </li>
 </ul>
+
+
+<ul class="list-group mt-3">
+    <li class="list-group-item">
+        <a href="{% url 'ticket-create' %}">ارتباط با کارشناسان</a>
+    </li>
+    <li class="list-group-item">
+        <a href="{% url 'ticket-follow' %}">پیگیری پرسش</a>
+    </li>
+</ul>
 {% endblock content %}
