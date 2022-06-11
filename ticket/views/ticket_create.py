@@ -11,13 +11,6 @@ def ticket_create(request):
         form['department'] = get_object_or_404(Department, pk=request.POST.get('department'))
         form['owner'] = get_object_or_404(User, pk=request.user.id)
         try:
-            # new_ticekt = Ticket()
-            # new_ticekt.owner = request.user
-            # new_ticekt.title = form['title']
-            # new_ticekt.department = form['department']
-            # new_ticekt.body = form['body']
-            # print(new_ticekt.closed_at)
-            # new_ticekt.save()
             Ticket.objects.create(**form)
             messages.success(request, _('ticket was created successfully.'))
             return redirect('profile')

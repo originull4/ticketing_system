@@ -1,7 +1,8 @@
-from custom_admin.imports import Department, redirect, get_object_or_404, messages, User
+from custom_admin.imports import Department, redirect, get_object_or_404, messages, User, superuser_only, login_required
 from django.utils.translation import gettext as _
 
-
+@login_required
+@superuser_only
 def department_expert_delete_view(request, expert_id, department_id):
     department = get_object_or_404(Department, pk=department_id)
     expert = get_object_or_404(User, pk=expert_id)

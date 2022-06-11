@@ -1,5 +1,7 @@
+from gettext import gettext
 from django.shortcuts import render
 from django.utils.translation import gettext as _
+from ticket.imports import render, gettext as _, Ticket
 
 
 def home_view(request):

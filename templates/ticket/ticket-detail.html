@@ -5,7 +5,10 @@
 {% load jalali %}
 <div class="card">
     <div class="card-body">
-        <h5 class="card-title pb-1 mb-3" style="border-bottom: 1px solid silver;">{{ ticket.title }}</h5>
+        <h5 class="card-title pb-1 mb-3" style="border-bottom: 1px solid silver;">
+            {{ ticket.title }}
+            ( <a href="{% url 'ticket-close' id=ticket.id username=ticket.owner.username %}">بستن</a> )
+        </h5>
         <p class="card-text">
         <p><strong>ایجاد شده توسط: </strong>{{ ticket.owner.username }}</p>
         <p><strong>متن پرسش: </strong>{{ ticket.body }}</p>
@@ -30,6 +33,8 @@
         {% endfor %}
         {% endif %}
 
+        {% if ticket.closed != True %}
+          
         <div class="card">
             <div class="card-body">
                 <form method="post" action="{% url 'ticket-reply-create' ticket.id %}">
@@ -42,7 +47,8 @@
                 </form>
             </div>
         </div>
-
+        {% endif %}
+        
     </div>
 </div>
 {% endblock content %}

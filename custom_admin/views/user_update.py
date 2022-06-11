@@ -1,7 +1,9 @@
-from custom_admin.imports import *
+from custom_admin.imports import get_object_or_404, User, is_english, messages, redirect, render, login_required, superuser_only
 from django.utils.translation import gettext as _
 
 
+@login_required
+@superuser_only
 def user_update_view(request, id):
     errors = []
     form = {}

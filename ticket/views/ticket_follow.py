@@ -1,7 +1,9 @@
 from ticket.imports import render, Ticket
+from core.decorators import owner_only
 
 
-def ticket_follow(request):
+@owner_only
+def ticket_follow(request, username):
     context = {
         'tickets': Ticket.objects.filter(owner=request.user).order_by('created_at')
     }

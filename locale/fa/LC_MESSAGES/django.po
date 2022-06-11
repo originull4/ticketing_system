@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-09 17:33+0430\n"
+"POT-Creation-Date: 2022-06-11 19:16+0430\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,15 +26,15 @@ msgstr "شما با موفقیت وارد شدید."
 msgid "username or password is wrong."
 msgstr "نام کاربری یا رمز عبور اشتباه است."
 
-#: account/views/signup.py:11 custom_admin/views/user_update.py:19
+#: account/views/signup.py:11 custom_admin/views/user_update.py:21
 msgid "this username is taken, try with other username."
 msgstr "این نام کابری قبلا ثبت شده است."
 
-#: account/views/signup.py:13 custom_admin/views/user_update.py:21
+#: account/views/signup.py:13 custom_admin/views/user_update.py:23
 msgid "username must be in english."
 msgstr "نام کاربری باید انگلیسی باشد."
 
-#: account/views/signup.py:15 custom_admin/views/user_update.py:23
+#: account/views/signup.py:15 custom_admin/views/user_update.py:25
 msgid "username must be 5 characters at least."
 msgstr "نام کاربری باید حداقل ۵ حرف باشد."
 
@@ -50,29 +50,59 @@ msgstr "کلمه عبور باید حداقل دارای ۸ کاراکتر با�
 msgid "your registration is done and you are loged in."
 msgstr "ثبت نام با موقیت انجام شد و وارد شدید."
 
-#: core/views.py:9
+#: core/decorators.py:15
+msgid "You shoud login to see this page."
+msgstr ""
+
+#: core/views.py:11
 msgid "Welcome to my site."
 msgstr "به سایت ما خوش امدید."
 
-#: custom_admin/views/department_create.py:10
+#: custom_admin/views/department_create.py:15
+#: custom_admin/views/department_update.py:20
 msgid "department with this name is already exist."
 msgstr "دپارتمان با این نام قبلا ثبت شده است."
 
-#: custom_admin/views/department_create.py:15
+#: custom_admin/views/department_create.py:24
+#: custom_admin/views/department_update.py:28
 msgid "department created successfully."
 msgstr "دپارتمان با موفقیت ثبت شد."
 
-#: custom_admin/views/department_delete.py:7
+#: custom_admin/views/department_delete.py:10
 msgid "department deleted successfully."
 msgstr "دپارتمان با موفقیت حذف شد."
 
-#: custom_admin/views/user_delete.py:8
+#: custom_admin/views/department_expert_delete.py:11
+#, fuzzy
+#| msgid "department deleted successfully."
+msgid "expert was deleted from department successfully."
+msgstr "دپارتمان با موفقیت حذف شد."
+
+#: custom_admin/views/user_delete.py:10
 msgid "user deleted successfully."
 msgstr "کاربر با موفقیت حذف شد."
 
-#: custom_admin/views/user_update.py:28
+#: custom_admin/views/user_update.py:30
 msgid "user updated successfully."
 msgstr "تغییرات با موفقیت اعمال شد."
+
+#: ticket/views/ticket_close.py:10
+#, fuzzy
+#| msgid "user deleted successfully."
+msgid "message was closed successfully."
+msgstr "کاربر با موفقیت حذف شد."
+
+#: ticket/views/ticket_create.py:15
+#, fuzzy
+#| msgid "department created successfully."
+msgid "ticket was created successfully."
+msgstr "دپارتمان با موفقیت ثبت شد."
+
+#: ticket/views/ticket_reply_create.py:14
+#, fuzzy
+#| msgid "department created successfully."
+msgid "reply created successfully."
+msgstr "دپارتمان با موفقیت ثبت شد."
 
 #: venv/lib/python3.10/site-packages/django/contrib/messages/apps.py:7
 msgid "Messages"

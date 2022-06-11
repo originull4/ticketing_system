@@ -1,7 +1,11 @@
-from custom_admin.imports import Department, User, get_object_or_404, render, redirect, messages
+from custom_admin.imports import (
+    Department, User, get_object_or_404, render, redirect, messages, login_required, superuser_only
+)
 from django.utils.translation import gettext as _
 
 
+@login_required
+@superuser_only
 def department_update_view(request, id):
     department = get_object_or_404(Department, pk=id)
     experts = User.objects.filter(is_staff=True)

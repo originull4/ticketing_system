@@ -1,7 +1,8 @@
-from custom_admin.imports import *
+from custom_admin.imports import User, Department, messages, redirect, render, superuser_only, login_required
 from django.utils.translation import gettext as _
 
-
+@login_required
+@superuser_only
 def department_create_view(request):
     errors = []
     form = {}

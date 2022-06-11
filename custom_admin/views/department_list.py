@@ -1,5 +1,8 @@
-from custom_admin.imports import *
+from custom_admin.imports import Department, redirect, login_required, superuser_only, render
 
+
+@login_required
+@superuser_only
 def department_list_view(request):
     departments = Department.objects.all()
     department_name = request.GET.get('department_search')
